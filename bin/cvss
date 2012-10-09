@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require 'cvss'
+
+raise "usage: cvss vector" if ARGV[0].nil?
+
+cvss = Cvss::Engine.new
+
+puts cvss.base if cvss.parse(ARGV[0])
+
