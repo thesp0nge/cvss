@@ -42,6 +42,7 @@ describe "CVSS library" do
       cvss.base[:a].should == "C"
     end
   end
+  
   describe "helper" do
     it "should have a data integrity helper" do
       cvss.should respond_to(:data_integrity)
@@ -65,7 +66,13 @@ describe "CVSS library" do
       cvss.parse("AV:N/AC:L/Au:N/C:N/I:N/A:C")
       cvss.data_availability.should == "C"
     end
+  end
 
+  it "has a score method"  do
+    cvss.should   respond_to(:score)
+  end
 
+  it "should calculate the CVSS score" do
+    cvss.score("AV:N/AC:L/Au:N/C:P/I:P/A:P").should  == 7.5
   end
 end
